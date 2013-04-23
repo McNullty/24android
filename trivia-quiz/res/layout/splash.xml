@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -8,8 +9,85 @@
     android:paddingTop="@dimen/activity_vertical_margin" >
 
     <TextView
-        android:layout_width="fill_parent"
+        android:id="@+id/TextViewTopTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/splash" />
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="top|center"
+        android:text="@string/app_logo_top"
+        android:textColor="@color/logo_color"
+        android:textSize="@dimen/logo_size" />
+
+    <TableLayout
+        android:id="@+id/TableLayout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal" >
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/splash1" >
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/splash2" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal" >
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/splash3" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/splash4" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/TextViewBottomTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_logo_bottom"
+        android:textColor="@color/logo_color"
+        android:textSize="@dimen/logo_size" />
+
+    <TextView
+        android:id="@+id/TextViewBottomVersion"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:background="@color/version_bkgrd"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/version_spacing"
+        android:text="@string/app_version_info"
+        android:textColor="@color/version_color"
+        android:textSize="@dimen/version_size" >
+    </TextView>
 
 </LinearLayout>
