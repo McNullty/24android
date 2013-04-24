@@ -4,3 +4,4 @@
 target/
 gen/
 bin/
+/local.properties
