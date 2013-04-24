@@ -6,5 +6,7 @@
     <dimen name="logo_size">20pt</dimen>
     <dimen name="version_size">5pt</dimen>
     <dimen name="version_spacing">3pt</dimen>
+    <dimen name="screen_title_size">16pt</dimen>
+    <dimen name="menu_item_size">16pt</dimen>
 
 </resources>
