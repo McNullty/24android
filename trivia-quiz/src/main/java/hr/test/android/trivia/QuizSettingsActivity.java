@@ -202,8 +202,66 @@ public class QuizSettingsActivity extends QuizActivity {
 			}, iYear, iMonth, iDay);
 			return dateDialog;
 		case PASSWORD_DIALOG_ID:
+			LayoutInflater inflator = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			final View layout = inflator.inflate(R.layout.password_dialog, (ViewGroup) findViewById(R.id.root));
 
-			return null;
+			final EditText p1 = (EditText) layout.findViewById(R.id.EditText_Pwd1);
+			final EditText p2 = (EditText) layout.findViewById(R.id.EditText_Pwd2);
+
+			final TextView error = (TextView) layout.findViewById(R.id.TextView_PwdProblem);
+			p2.addTextChangedListener(new TextWatcher() {
+
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+				}
+
+				public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+				}
+
+				public void afterTextChanged(Editable s) {
+					String strPass1 = p1.getText().toString();
+					String strPass2 = p2.getText().toString();
+					if (strPass1.equals(strPass2)) {
+						error.setText(R.string.settings_pwd_equal);
+					} else {
+						error.setText(R.string.settings_pwd_not_equal);
+					}
+				}
+			});
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setView(layout);
+			// Now configure the AlertDialog
+			builder.setTitle(R.string.settings_button_pwd);
+
+			builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int whichButton) {
+					// We forcefully dismiss and remove the Dialog, so it
+					// cannot be used again (no cached info)
+					QuizSettingsActivity.this.removeDialog(PASSWORD_DIALOG_ID);
+				}
+			});
+			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					TextView passwordInfo = (TextView) findViewById(R.id.TextView_Password_Info);
+					String strPassword1 = p1.getText().toString();
+					String strPassword2 = p2.getText().toString();
+					if (strPassword1.equals(strPassword2)) {
+						Editor editor = mGameSettings.edit();
+						editor.putString(GAME_PREFERENCES_PASSWORD, strPassword1);
+						editor.commit();
+						passwordInfo.setText(R.string.settings_pwd_set);
+					} else {
+						Log.d(DEBUG_TAG, "Passwords do not match. Not saving. Keeping old password (if set).");
+					}
+					// We forcefully dismiss and remove the Dialog, so it
+					// cannot be used again
+					QuizSettingsActivity.this.removeDialog(PASSWORD_DIALOG_ID);
+				}
+			});
+
+			// Create the AlertDialog and return it
+            AlertDialog passwordDialog = builder.create();
+            return passwordDialog;
 		}
 		return null;
 	}
