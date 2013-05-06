@@ -13,5 +13,6 @@
     <dimen name="fading_edge_length">25px</dimen>
     <dimen name="drawable_padding">5px</dimen>
     <dimen name="game_question_size">10pt</dimen>
+    <dimen name="avatar_size">75px</dimen>
 
 </resources>
